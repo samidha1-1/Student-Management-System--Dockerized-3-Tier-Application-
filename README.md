@@ -262,16 +262,17 @@ localhost:3308
 
 # 📸 Screenshots
 
-You can add screenshots here.
+## Home Page
 
-Example:
+![Home Page](screenshots/home-page.png)
 
-```
-screenshots/
-    home-page.png<img width="1912" height="495" alt="image" src="https://github.com/user-attachments/assets/c2e6ff68-ac10-4455-af37-5840d1ec1024" />
+# Docker Containers
 
-    add-student.png
-```
+![Docker Containers](screenshots/docker-containers.png)
+
+# Mysql Database
+
+![MYSQL Database](screenshots/mysql-database.png)
 
 ---
 
