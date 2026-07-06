@@ -36,6 +36,12 @@ services:
     depends_on:
       - mysql
 
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root123
+      MYSQL_DATABASE: studentdb  
+
     networks:
         - student-management-system-network   
 
