@@ -268,7 +268,7 @@ localhost:3308
 
 # Docker Containers
 
-![Docker Containers](screenshots/docker-containers.png)
+![Docker Containers](screenshots/docker-conatiners.png)
 
 # Mysql Database
 
