@@ -5,65 +5,44 @@ services:
 
   mysql:
     image: mysql:8
-
     container_name: mysql
-
     restart: always
-
+    
     environment:
       MYSQL_ROOT_PASSWORD: root123
       MYSQL_DATABASE: studentdb
-      MYSQL_HOST: mysql
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root123
-
     ports:
       - "3306:3306"
-
-    volumes:
-      # - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
-       - mysql-data 
-
+   volumes:
+      - mysql-data:/var/lib/mysql
     networks:
         - student-management-system-network   
 
   backend:
-
     build: ./backend
-
     container_name: backend
-
     ports:
       - "5000:5000"
-
     depends_on:
       - mysql
-
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: root123
       MYSQL_DATABASE: studentdb  
-      MYSQL_ROOT_PASSWORD: root123
-
     networks:
         - student-management-system-network   
 
   frontend:
-
     build: ./frontend
-
     container_name: frontend
-
     ports:
       - "80:80"
-
     depends_on:
       - backend
-
     networks:
         - student-management-system-network   
-
+        
 networks:
   default:
     name: student-management-system-network
