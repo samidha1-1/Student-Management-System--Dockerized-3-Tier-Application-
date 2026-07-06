@@ -13,6 +13,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root123
       MYSQL_DATABASE: studentdb
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root123
 
     ports:
       - "3306:3306"
@@ -41,6 +44,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root123
       MYSQL_DATABASE: studentdb  
+      MYSQL_ROOT_PASSWORD: root123
 
     networks:
         - student-management-system-network   
