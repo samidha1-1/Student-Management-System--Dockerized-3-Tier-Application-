@@ -327,9 +327,9 @@ These challenges helped me understand how multi-container applications behave in
 
 **Samidha Nitin Wani**
 
-GitHub: https://github.com/yourusername
+GitHub: https://github.com/samidha1-1
 
-LinkedIn: https://linkedin.com/in/yourprofile
+LinkedIn: [https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/samidha-wani-411549285/)
 
 ---
 
