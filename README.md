@@ -1,10 +1,10 @@
-# 🎓 Student Management System - Dockerized 3-Tier Application
+#  Student Management System - Dockerized 3-Tier Application
 
 A containerized **Student Management System** built using **Python Flask, MySQL, HTML, CSS, JavaScript, Docker, and Docker Compose**. This project demonstrates a complete **3-tier architecture** where the frontend, backend, and database run in separate Docker containers.
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 
 This application allows users to perform CRUD (Create, Read, Update, Delete) operations on student records through a web interface.
 
@@ -12,7 +12,7 @@ The project is fully containerized using Docker and orchestrated using Docker Co
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
                 +---------------------+
@@ -39,7 +39,7 @@ The project is fully containerized using Docker and orchestrated using Docker Co
 
 ---
 
-# 🚀 Features
+#  Features
 
 - Add Student
 - View Students
@@ -55,7 +55,7 @@ The project is fully containerized using Docker and orchestrated using Docker Co
 
 ---
 
-# 🛠️ Tech Stack
+#  Tech Stack
 
 ## Frontend
 
@@ -82,7 +82,7 @@ The project is fully containerized using Docker and orchestrated using Docker Co
 
 ---
 
-# 📂 Project Structure
+#  Project Structure
 
 ```
 student-management-system/
@@ -108,7 +108,7 @@ student-management-system/
 
 ---
 
-# 🐳 Docker Containers
+#  Docker Containers
 
 | Container | Purpose |
 |------------|---------|
@@ -118,7 +118,7 @@ student-management-system/
 
 ---
 
-# 🌐 Docker Networking
+#  Docker Networking
 
 Docker Compose creates a private bridge network that allows containers to communicate using service names.
 
@@ -136,7 +136,7 @@ host="mysql"
 
 ---
 
-# 💾 Docker Volume
+#  Docker Volume
 
 A Docker volume is used to persist MySQL data.
 
@@ -148,7 +148,7 @@ This ensures that student records are not lost when containers are recreated.
 
 ---
 
-# 🔥 REST API Endpoints
+#  REST API Endpoints
 
 ## Get All Students
 
@@ -192,7 +192,7 @@ DELETE /students/{id}
 
 ---
 
-# ▶️ Running the Project
+#  Running the Project
 
 ## Clone the Repository
 
@@ -236,7 +236,7 @@ docker compose down
 
 ---
 
-# 🌍 Access the Application
+#  Access the Application
 
 Frontend
 
@@ -260,7 +260,7 @@ localhost:3308
 
 ---
 
-# 📸 Screenshots
+#  Screenshots
 
 ## Home Page
 
@@ -276,7 +276,7 @@ localhost:3308
 
 ---
 
-# 📚 What I Learned
+#  What I Learned
 
 Through this project I learned:
 
@@ -297,7 +297,7 @@ Through this project I learned:
 
 ---
 
-# 🚧 Challenges Faced
+#  Challenges Faced
 
 During development, I encountered and resolved several real-world Docker issues:
 
@@ -311,7 +311,7 @@ These challenges helped me understand how multi-container applications behave in
 
 ---
 
-# 🔮 Future Improvements
+#  Future Improvements
 
 - User Authentication
 - JWT Authentication
@@ -323,7 +323,7 @@ These challenges helped me understand how multi-container applications behave in
 
 ---
 
-# 👩‍💻 Author
+#  Author
 
 **Samidha Nitin Wani**
 
@@ -333,4 +333,4 @@ LinkedIn: [https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/sami
 
 ---
 
-# ⭐ If you found this project useful, consider giving it a star on GitHub!
+#  If you found this project useful, consider giving it a star on GitHub!
