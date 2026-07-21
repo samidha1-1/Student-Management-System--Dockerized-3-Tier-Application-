@@ -45,7 +45,6 @@ The project is fully containerized using Docker and orchestrated using Docker Co
 - View Students
 - Update Student Details
 - Delete Student
-- REST API using Flask
 - MySQL Database
 - Dockerized Backend
 - Dockerized Frontend
