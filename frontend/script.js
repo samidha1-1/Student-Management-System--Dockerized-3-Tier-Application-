@@ -1,4 +1,4 @@
-const api="http://13.206.238.52:5000";
+const api="http://localhost:5000";
 
 function loadStudents(){
 
