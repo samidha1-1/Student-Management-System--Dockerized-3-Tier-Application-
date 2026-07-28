@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment-project
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name:  mysql-container
+        image: mysql
+        imagePullPolicy: Always
+        env:
+        - name: MYSQL_ROOT_PASSWORD 
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: MYSQL_ROOT_PASSWORD
+
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret 
+              key: MYSQL_DATABASE 
+
+        
+        volumeMounts:
+        - name: mysql-secret-volume
+          mountPath: /etc/secret
+          readOnly: true
+
+        - name: mysql-configmap-volume
+          mountPath: /etc/configMap  
+          readOnly: true 
+
+        ports:
+        - containerPort: 3306 
+
+      volumes: 
+      - name: mysql-secret-volume 
+        secret:
+          secretName: mysql-secret 
+        
+      - name: mysql-configmap-volume
+        configMap: 
+          name: mysql-config      
