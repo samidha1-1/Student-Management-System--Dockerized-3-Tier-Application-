@@ -1,4 +1,5 @@
-const api="http://localhost:5000";
+// const api = "http://localhost:31599";
+const api = "";
 
 function loadStudents(){
 

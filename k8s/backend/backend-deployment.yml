@@ -17,6 +17,13 @@ spec:
       containers:
       - name: backend-container
         image: samidha7/student-management-system-docker-3-tier-application-backend
-        imagePullPolicy: Always 
+        imagePullPolicy: Always
+        
+        envFrom:
+        - configMapRef:
+            name: mysql-config 
+        - secretRef:
+            name: mysql-secret    
+
         ports:
         - containerPort: 5000

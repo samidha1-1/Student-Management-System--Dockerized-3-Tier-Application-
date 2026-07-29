@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pymysql
 import time
+import os 
 
 app = Flask(__name__)
 CORS(app)
@@ -9,13 +10,16 @@ CORS(app)
 # Wait until MySQL is ready
 db = None
 
+# Wait until MySQL is ready
+db = None
+
 while True:
     try:
         db = pymysql.connect(
-            host="mysql",
-            user="root",
-            password="root123",
-            database="studentdb",
+            host=os.getenv("MYSQL_HOST"),
+            user=os.getenv("MYSQL_USER"),
+            password=os.getenv("MYSQL_ROOT_PASSWORD"),
+            database=os.getenv("MYSQL_DATABASE"),
             cursorclass=pymysql.cursors.DictCursor
         )
         print("✅ Connected to MySQL!")
@@ -23,7 +27,6 @@ while True:
     except Exception as e:
         print(f"⏳ Waiting for MySQL... {e}")
         time.sleep(5)
-
 
 @app.route("/students", methods=["GET"])
 def get_students():

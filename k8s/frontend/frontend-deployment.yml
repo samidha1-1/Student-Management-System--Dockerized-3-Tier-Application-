@@ -17,6 +17,6 @@ spec:
       containers:
       - name:  frontend-container
         image: samidha7/student-management-system-docker-3-tier-application-frontend
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         ports:
         - containerPort: 80
