@@ -41,6 +41,9 @@ spec:
           mountPath: /etc/configMap  
           readOnly: true 
 
+        - name: mysql-storage
+          mountPath: /var/lib/mysql  
+
         ports:
         - containerPort: 3306 
 
@@ -52,3 +55,7 @@ spec:
       - name: mysql-configmap-volume
         configMap: 
           name: mysql-config      
+
+      - name: mysql-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc     

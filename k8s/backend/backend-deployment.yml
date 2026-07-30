@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: samidha7/student-management-system-docker-3-tier-application-backend
+        image: samidha7/student-management-system-docker-3-tier-application-backend:v3
         imagePullPolicy: Always
         
         envFrom:
