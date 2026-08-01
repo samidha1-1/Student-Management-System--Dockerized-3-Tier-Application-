@@ -294,23 +294,32 @@ https://your-domain.com/api/students
 
 ## Application UI
 
-![Application](screenshots/home-page.png)
+![Application](screenshots/homepage.png)
 
 
 ## Kubernetes Pods
 
-![Kubernetes Pods](screenshots/kubernetes-pods.png)
+![Kubernetes Pods](screenshots/kubectl-pods.png)
 
 
 ## Kubernetes Services
 
-![Kubernetes Services](screenshots/kubernetes-services.png)
+![Kubernetes Services](screenshots/kubectl-svc.png)
 
 
 ## MySQL Database
 
 ![MYSQL Database](screenshots/mysql-database.png)
 
+
+## Kubernetes Ingress
+
+![MYSQL Database](screenshots/kubectl-ingress.png)
+
+
+## Kubernetes Ingress Controller
+
+![MYSQL Database](screenshots/kubectl-ingress-controller.png)
 
 ---
 
