@@ -1,60 +1,45 @@
-#  Student Management System - Dockerized 3-Tier Application
 
-A containerized **Student Management System** built using **Python Flask, MySQL, HTML, CSS, JavaScript, Docker, and Docker Compose**. This project demonstrates a complete **3-tier architecture** where the frontend, backend, and database run in separate Docker containers.
 
----
+# Student-Management-system-3-tier-application-k3s-deployment 🚀
 
-##  Project Overview
+A production-style **3-tier Student Management System** deployed using **Docker, Kubernetes, and AWS EC2**.
 
-This application allows users to perform CRUD (Create, Read, Update, Delete) operations on student records through a web interface.
+This project demonstrates a complete cloud-native architecture where frontend, backend, and database components run as independent services using Kubernetes.
 
-The project is fully containerized using Docker and orchestrated using Docker Compose.
+The application provides CRUD operations for managing student records through a web interface.
 
 ---
 
-##  Architecture
+# Architecture Overview
 
 ```
-                +---------------------+
-                |      Frontend       |
-                | HTML | CSS | JS     |
-                |      (Nginx)        |
-                +----------+----------+
-                           |
-                    REST API Calls
-                           |
-                           ▼
-                +---------------------+
-                |  Backend (Flask)    |
-                | Python REST API     |
-                +----------+----------+
-                           |
-                       SQL Queries
-                           |
-                           ▼
-                +---------------------+
-                |   MySQL Database    |
-                +---------------------+
+                         Internet
+                            |
+                            |
+                       AWS EC2 Instance
+                            |
+                    Kubernetes Ingress
+                            |
+          +-----------------+-----------------+
+          |                                   |
+          |                                   |
+ Frontend Service                     Backend Service
+          |                                   |
+    Nginx Pod                         Flask API Pod
+ HTML/CSS/JS                         Python REST API
+                                              |
+                                              |
+                                      MySQL Service
+                                              |
+                                        MySQL Pod
+                                              |
+                                      Persistent Storage
+                                             PVC
 ```
 
 ---
 
-#  Features
-
-- Add Student
-- View Students
-- Update Student Details
-- Delete Student
-- MySQL Database
-- Dockerized Backend
-- Dockerized Frontend
-- Dockerized MySQL
-- Docker Compose Orchestration
-- Persistent Database Storage using Docker Volumes
-
----
-
-#  Tech Stack
+# Technology Stack
 
 ## Frontend
 
@@ -67,24 +52,61 @@ The project is fully containerized using Docker and orchestrated using Docker Co
 
 - Python
 - Flask
-- Flask-CORS
+- Flask REST API
 - PyMySQL
 
 ## Database
 
 - MySQL 8
 
-## DevOps
+## Containerization
 
 - Docker
+- Docker Images
 - Docker Compose
+
+## Orchestration
+
+- Kubernetes
+- k3s Kubernetes Distribution
+- Kubernetes Deployments
+- Kubernetes Services
+- Kubernetes Ingress
+
+## Cloud Platform
+
+- AWS EC2
+
+## Kubernetes Configuration
+
+- ConfigMaps
+- Secrets
+- Persistent Volume Claims (PVC)
 
 ---
 
-#  Project Structure
+# Features
+
+✅ Add Student Records  
+✅ View Student Records  
+✅ Update Student Information  
+✅ Delete Student Records  
+✅ REST API Backend  
+✅ MySQL Database Integration  
+✅ Dockerized Application  
+✅ Kubernetes Deployment  
+✅ Persistent Database Storage  
+✅ Ingress Based Routing  
+✅ Secure Configuration using Secrets  
+✅ Cloud Deployment on AWS EC2  
+
+---
+
+# Project Structure
 
 ```
 student-management-system/
+
 │
 ├── backend/
 │   ├── app.py
@@ -100,236 +122,293 @@ student-management-system/
 ├── database/
 │   └── init.sql
 │
-├── docker-compose.yml
+├── k8s/
 │
+│   ├── frontend-deployment.yaml
+│   ├── frontend-service.yaml
+│   │
+│   ├── backend-deployment.yaml
+│   ├── backend-service.yaml
+│   │
+│   ├── mysql-deployment.yaml
+│   ├── mysql-service.yaml
+│   │
+│   ├── configmap.yaml
+│   ├── secret.yaml
+│   ├── pvc.yaml
+│   └── ingress.yaml
+│
+├── docker-compose.yml
 └── README.md
 ```
 
 ---
 
-#  Docker Containers
+# Kubernetes Resources Used
 
-| Container | Purpose |
-|------------|---------|
-| frontend | Serves the frontend using Nginx |
-| backend | Runs the Flask REST API |
-| mysql | Stores student records |
+| Resource | Purpose |
+|----------|---------|
+| Deployment | Manages application pods |
+| Service | Provides internal communication between components |
+| Ingress | Provides external HTTP routing |
+| ConfigMap | Stores application configuration |
+| Secret | Stores sensitive information |
+| PVC | Provides persistent database storage |
 
 ---
 
-#  Docker Networking
+# Kubernetes Architecture Flow
 
-Docker Compose creates a private bridge network that allows containers to communicate using service names.
+```
+User Browser
+
+      |
+      |
+      v
+
+Ingress Controller
+
+      |
+      |
+      +----------------+
+      |                |
+      v                v
+
+Frontend Service   Backend Service
+
+      |                |
+      v                v
+
+Frontend Pod       Backend Pod
+
+                       |
+                       |
+                       v
+
+                MySQL Service
+
+                       |
+                       |
+                       v
+
+                 MySQL Pod
+
+                       |
+                       |
+                       v
+
+                Persistent Volume
+```
+
+---
+
+# Docker Networking
+
+Docker Compose and Kubernetes provide service-based communication.
+
+Instead of using container IP addresses, services communicate using DNS names.
 
 Example:
 
-```
-Backend → mysql
-```
-
-Instead of using an IP address, the backend connects using:
+Backend connects to MySQL:
 
 ```python
-host="mysql"
+MYSQL_HOST=mysql-service
 ```
+
+No hardcoded IP addresses are required.
 
 ---
 
-#  Docker Volume
+# Persistent Storage
 
-A Docker volume is used to persist MySQL data.
+MySQL database uses Kubernetes Persistent Volume Claim.
 
-```
-mysql-data
-```
+Benefits:
 
-This ensures that student records are not lost when containers are recreated.
-
----
-
-#  REST API Endpoints
-
-## Get All Students
-
-```
-GET /students
-```
+- Database data survives pod restart
+- Storage lifecycle is separated from containers
+- Prevents data loss during redeployment
 
 ---
 
-## Add Student
+# Kubernetes Deployment on AWS EC2
 
-```
-POST /students
-```
-
-Example Request
-
-```json
-{
-    "name":"John",
-    "email":"john@gmail.com",
-    "course":"BCA"
-}
-```
-
----
-
-## Update Student
-
-```
-PUT /students/{id}
-```
-
----
-
-## Delete Student
-
-```
-DELETE /students/{id}
-```
-
----
-
-#  Running the Project
-
-## Clone the Repository
+## Install k3s
 
 ```bash
-git clone https://github.com/yourusername/student-management-system.git
-```
-
-```
-cd student-management-system
+curl -sfL https://get.k3s.io | sh -
 ```
 
 ---
 
-## Build Containers
+## Deploy Application
 
 ```bash
-docker compose build
+kubectl apply -f k8s/
 ```
 
 ---
 
-## Start the Application
+## Check Running Pods
 
 ```bash
-docker compose up
+kubectl get pods
 ```
 
-or
+---
+
+## Check Services
 
 ```bash
-docker compose up -d
+kubectl get svc
 ```
 
 ---
 
-## Stop the Application
+## Check Ingress
 
 ```bash
-docker compose down
+kubectl get ingress
 ```
 
 ---
 
-#  Access the Application
+# Application Access
 
-Frontend
-
-```
-http://localhost:8080
-```
-
-Backend API
+Frontend:
 
 ```
-http://localhost:5000/students
+https://your-domain.com
 ```
 
-MySQL
+Backend API:
 
 ```
-localhost:3308
+https://your-domain.com/api/students
 ```
-
-(Change the port if you configured a different one.)
 
 ---
 
-#  Screenshots
+# Screenshots
 
-## Home Page
+## Application UI
 
-![Home Page](screenshots/home-page.png)
+![Application](screenshots/home-page.png)
 
-# Docker Containers
 
-![Docker Containers](screenshots/docker-conatiners.png)
+## Kubernetes Pods
 
-# Mysql Database
+![Kubernetes Pods](screenshots/kubernetes-pods.png)
+
+
+## Kubernetes Services
+
+![Kubernetes Services](screenshots/kubernetes-services.png)
+
+
+## MySQL Database
 
 ![MYSQL Database](screenshots/mysql-database.png)
 
+
 ---
 
-#  What I Learned
+# Challenges Faced & Solutions
+
+## 1. Backend Starting Before MySQL
+
+### Problem
+
+Backend container started before MySQL database was ready.
+
+### Solution
+
+Implemented MySQL connection retry logic in Flask application.
+
+---
+
+## 2. Kubernetes Image Issues
+
+### Problem
+
+Pods failed due to image pulling errors.
+
+### Solution
+
+Debugged Kubernetes events and verified container images.
+
+---
+
+## 3. Service Communication Issues
+
+### Problem
+
+Frontend and backend services were unable to communicate.
+
+### Solution
+
+Configured Kubernetes Services and DNS-based communication.
+
+---
+
+## 4. External Browser Access
+
+### Problem
+
+Application was not accessible externally.
+
+### Solution
+
+Configured Kubernetes Ingress controller and domain routing.
+
+---
+
+# What I Learned
 
 Through this project I learned:
 
-- Docker Fundamentals
+- Docker containerization
 - Writing Dockerfiles
 - Docker Images
-- Docker Containers
 - Docker Compose
-- Docker Networking
-- Docker Volumes
-- Multi-container Applications
-- Flask REST APIs
-- MySQL Integration
-- Container Debugging
-- Container Startup Dependencies
-- Port Mapping
+- Container Networking
+- Kubernetes Architecture
+- Kubernetes Deployments
+- Kubernetes Services
+- Kubernetes Ingress
+- ConfigMaps
+- Secrets Management
 - Persistent Storage
+- Cloud Deployment
+- Kubernetes Debugging
+- Production-style Application Deployment
 
 ---
 
-#  Challenges Faced
+# Future Improvements
 
-During development, I encountered and resolved several real-world Docker issues:
-
-- Backend container starting before MySQL was ready.
-- Docker networking configuration.
-- Port conflicts on the host machine.
-- MySQL connection troubleshooting.
-- Container startup sequencing.
-
-These challenges helped me understand how multi-container applications behave in real-world environments.
-
----
-
-#  Future Improvements
-
-- User Authentication
-- JWT Authentication
-- Search Student
-- Pagination
-- Kubernetes Deployment
-- CI/CD Pipeline using Jenkins or GitHub Actions
-- Deploy on AWS
+- Jenkins CI/CD Pipeline
+- GitHub Actions Workflow
+- Helm Charts
+- Prometheus & Grafana Monitoring
+- AWS EKS Deployment
+- HTTPS using Cert Manager
+- Horizontal Pod Autoscaling
+- Application Authentication
 
 ---
 
-#  Author
+# Author
 
 **Samidha Nitin Wani**
 
-GitHub: https://github.com/samidha1-1
+GitHub:
+https://github.com/samidha1-1
 
-LinkedIn: [https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/samidha-wani-411549285/)
+LinkedIn:
+https://www.linkedin.com/in/samidha-wani-411549285/
 
 ---
 
-#  If you found this project useful, consider giving it a star on GitHub!
+⭐ If you found this project useful, consider giving it a star on GitHub!
