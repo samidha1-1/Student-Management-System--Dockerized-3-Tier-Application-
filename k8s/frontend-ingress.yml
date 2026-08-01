@@ -1,26 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: student-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-
+  name: frontend-ingress
 spec:
   ingressClassName: nginx
-
   rules:
   - host: samidhawani.in
     http:
       paths:
-
-      - path: /api(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: backend-service
-            port:
-              number: 5000
-
       - path: /
         pathType: Prefix
         backend:
