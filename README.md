@@ -309,7 +309,7 @@ https://your-domain.com/api/students
 
 ## MySQL Database
 
-![MYSQL Database](screenshots/mysql-database.png)
+![MYSQL Database](screenshots/mysql-database-1.png)
 
 
 ## Kubernetes Ingress
